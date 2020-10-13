@@ -1,0 +1,43 @@
+sudo docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
+
+
+sudo docker run --name my-custom-tree -v path/nginx/nginx.conf:/etc/nginx/nginx.conf:ro -d nginx
+
+
+
+
+sudo docker exec -t CONTAINER_ID ls
+
+
+sudo docker exec -t CONTAINER_ID nginx -v
+
+
+### Test Nginx configuration 
+sudo docker exec -t CONTAINER_ID nginx -T
+
+### Start Nginx Service
+sudo docker exec -t CONTAINER_ID systemctl start nginx #systemd
+or
+sudo docker exec -t CONTAINER_ID service nginx start #sysvinit ok
+
+
+### Enable 
+sudo docker exec -t CONTAINER_ID systemctl enable nginx
+
+or
+sudo docker exec -t CONTAINER_ID service enable nginx
+
+
+### Adapte
+sudo docker run --name tmp-nginx-container -d nginx
+sudo docker cp tmp-nginx-container:/etc/nginx/nginx.conf path/nginx/nginx.conf
+docker rm -f tmp-nginx-container
+
+
+
+Remove;
+sudo docker stop CONTAINER_ID
+sudo docker rm
+
+
+
